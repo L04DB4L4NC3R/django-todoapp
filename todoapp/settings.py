@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+# import dj_database_url
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
@@ -77,14 +78,13 @@ WSGI_APPLICATION = 'todoapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+#if os.environ.get("DATABASE_URL") is not None:
+    #DATABASES["default"] = dj_database_url.config()
 
 # Update database configuration with $DATABASE_URL.
 import dj_database_url
